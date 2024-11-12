@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Error Handling Example</title>
+</head>
+<body>
+  <h1>Error Handling in JavaScript</h1>
+  <button onclick="handleErrorExample()">Trigger Error</button>
+  <div id="output"></div>
+
+  <script>
+    // Function to simulate an error and handle it
+    function handleErrorExample() {
+      try {
+        // Simulating an error by calling an undefined function
+        undefinedFunction();
+      } catch (error) {
+        // Catching and displaying the error message
+        console.error("An error occurred:", error.message);
+        document.getElementById("output").innerHTML = `
+          <p style="color: red;">Error: ${error.message}</p>
+        `;
+      } finally {
+        // Code in the finally block runs regardless of whether there was an error
+        console.log("Error handling completed.");
+      }
+    }
+  </script>
+</body>
+</html>

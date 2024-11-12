@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Async/Await Example</title>
+</head>
+<body>
+  <h1>Async/Await Example</h1>
+  <button onclick="fetchData()">Fetch Data</button>
+  <div id="output"></div>
+
+  <script>
+    // Async function to fetch data
+    async function fetchData() {
+      const apiUrl = "https://jsonplaceholder.typicode.com/posts/1";
+
+      try {
+        // Awaiting the fetch response
+        const response = await fetch(apiUrl);
+
+        // Checking if the response was successful
+        if (!response.ok) {
+          throw new Error("Network response was not ok " + response.statusText);
+        }
+
+        // Awaiting the parsed JSON data
+        const data = await response.json();
+
+        // Displaying data on the web page
+        document.getElementById("output").innerHTML = `
+          <h3>Post Title: ${data.title}</h3>
+          <p>Post Body: ${data.body}</p>
+        `;
+      } catch (error) {
+        // Handling any errors
+        console.error("Error fetching data:", error);
+        document.getElementById("output").innerHTML = `<p>Error fetching data: ${error.message}</p>`;
+      }
+    }
+  </script>
+</body>
+</html>
